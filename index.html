@@ -13,14 +13,45 @@
 		<div class="container-fluid bg-warning bg-gradient justify-content-center col-10 pt-3 m-3">
 			<div class="row justify-content-center">
 				<div class="row col-12 justify-content-center">
-					<input class="col-11 bg-secondary rounded p-3 m-3" type="text" name="" value="">
-					<input class="col-5 btn btn-outline-primary p-3 m-3" onclick="addTableContent()"  type="submit" value="AJOUTER">
-					<input class="col-5 btn btn-outline-success p-3 m-3"	onclick="displayTableContent()" type="submit" value="VOIR">
+					<input class="col-11 bg-secondary rounded p-3 m-3" id="inputText" name="text" type="text">
+					<input class="col-5 btn btn-outline-primary p-3 m-3"  onclick="addTableContent()" type="submit" value="AJOUTER">
+					<input class="col-5 btn btn-outline-success p-3 m-3"  onclick="addAndDisplayContent()" type="submit" value="VOIR">
+					<div class="col-12 p-4 text-center" id="divText"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="text-center" id="d1"></div>
-	<script src="app.js" type="text/javascript"></script>
+
+	<!-- <script src="app.js" type="text/javascript"></script> -->
+	<script type="text/javascript">
+	//	la fonction pour confirmation d'ajout affiché dans une modale
+		function addTableContent() {
+			var addText = document.getElementById('inputText').value;
+				alert(addText + ' a été ajouté au tableau');
+		}
+	// déclaration d'un tableau vide pour recevoir la chaîne de caractères de l'input
+	var monTableau = [];
+	//fonction appelée au click du bouton voir
+	function addAndDisplayContent() {
+		// récupérer la valeur de l'input avec la méthode getElementById
+		var inputText = document.getElementById('inputText').value;
+		// ajouter la value au début du tableau avec la méthode unshift
+		monTableau.unshift(inputText);
+		/* Dans la boucle avec l'instruction for on initialise une variable i à zéro
+		qui nous servira d'indice lors des ajouts de données par l'incrémentation.
+		On exécute ensuite les deux instructions contenues dans la boucle :
+		La vérification que i est strictement inférieur à la longueur avec La propriété .length,
+		puis l'incrémentation i de 1, ce qui sera fait à chaque passage dans la boucle.*/
+		for (i = 0; i < monTableau.length; i++) {
+		/* dans le parcours du tableau par l'instruction for, on concatène toutes les valeurs
+		du tableau avec un caractère "," pour pouvoir afficher les valeurs de l'input passées
+		en paramètres séparées par une virgule dans une modale après la boucle for.
+		*/
+			(monTableau[i] + ',');
+		}
+		// display du tableau dans une modale et dans une div
+		alert(document.getElementById('divText').innerHTML = monTableau);
+	}
+	</script>
 </body>
 </html>
